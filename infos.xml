@@ -2,9 +2,9 @@
 <document>
     <title>myDownloads</title>
     <author>G.Cyrille</author>
-    <version>1.0.0</version>
-	<date>29/09/2023</date>
+    <version>1.0.1</version>
+	<date>03/10/2023</date>
     <site>https://re7net.com</site>
-    <description><![CDATA[force et compte le telechargement de certains fichier . extensions à traiter configurables)]]></description>
+    <description><![CDATA[force et compte le telechargement de certains fichier . extensions à traiter configurables.]]></description>
     <scope></scope>
 </document>
