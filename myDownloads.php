@@ -3,9 +3,8 @@
 	/**
 		* Plugin myDownloads
 		*
-		* @package	PLX
-		* @version	1.0
-		* @date	29/09/2023
+		* @version	1.0.1
+		* @date	3/10/2023
 		* @author G-CYRILLUS
 	**/
     class myDownloads extends plxPlugin {
@@ -20,11 +19,7 @@
         const END_CODE = PHP_EOL . '?>';
 		public $jsonStat = array();
 		public $fileStatDl = PLX_PLUGINS.__CLASS__.'/'.__CLASS__.'.json';
-        
-        
-        
-        
-        
+
         public function __construct($default_lang){
             # Appel du constructeur de la classe plxPlugin (obligatoire)
             parent::__construct($default_lang);
@@ -41,9 +36,6 @@
             $this->setConfigProfil(PROFIL_ADMIN);
             $this->setAdminProfil( PROFIL_ADMIN);
 			
-			
-			
-			
 		}
         
 		#code à exécuter à l’activation du plugin
@@ -59,8 +51,7 @@
 					file_put_contents($this->fileStatDl, json_encode($this->jsonStat,true));
 				}
 			}
-			
-			
+
 		}
 		/* regles de réecritures à ajouter pour activer le comptage */
 		public function myHtaccessFile2dl($extList) {
@@ -95,12 +86,7 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
 		if($action==1) {			
 			$htaccess = $htaccess.PHP_EOL.$plugHtaccess;
 		}
-		
-			
 			return plxUtils::write($htaccess, PLX_ROOT.'.htaccess');
-		
-		
-		
 		}
 		/*
 			* Hook sur l'activation de l'urlRewriting dans PluXml.
@@ -125,9 +111,7 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
 <?php
 		echo self::END_CODE;
 		}
-		
 
-		
 		/* ajout du mode file2dl */
 		public function plxMotorPreChauffageBegin() {
 			$string = "if(\$this->get && preg_match('/^file2dl\/?/',\$this->get)) {exit;}";
@@ -139,10 +123,11 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
         public function Index() {
 			$plxShow = plxShow::getInstance(); 
 			$plxMotor = plxMotor::getInstance(); 
-			
+			$page='';
+			$forbidden = explode('|', 'cgi|eml|html|htm|php|exe|bat|msg|ost|pst|ini|xml|com|dll|tmp|drv|htaccess|conf|log|svbin|sieve|bin|db|dbf|dbx|ddb|json|oab|old|pgp');
 			if(isset($_GET['file2dl'])) {				
 				$url='.'.$_GET['file2dl'];
-				if(file_exists($url)) {
+				if(file_exists($url) and !in_array(pathinfo(basename($url), PATHINFO_EXTENSION),$forbidden) ) {
 					
 					$ext = pathinfo(basename($url), PATHINFO_EXTENSION);
 					$dir = dirname($url);
@@ -168,15 +153,17 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
 					//Terminator
 					die(); 
 				}
-				else{
-					echo '<p>'.basename($url) . " File does not exist.";
+				elseif(in_array(pathinfo(basename($url), PATHINFO_EXTENSION),$forbidden) ) {				
+				$page='<!DOCTYPE html><html lang="'. $this->default_lang.'"><title>forbidden</title><head></head><body><p>'.$this->getLang('L_DOCUMENT_NOT_ALLOWED').'<br><a href="'.PLX_ROOT.'">'.$this->getLang('L_BACK_HOME').'</a></p><style>html{display:grid;height:100vh;place-items:center;background:#333;font-size:clamp(15px, 5vw,40px)}body {background:orange;padding:0.5em;border-radius:1em;box-shadow:0.25em 0.25em .5em;border:solid white;text-align:center;}</style></body></html>';	    			
+				echo  $page;
+				exit;  
 				}
-				exit;
-			}            
-            // code
+				else{
+				$page='<!DOCTYPE html><html lang="'. $this->default_lang.'"><title>unknown</title><head></head><body><p>'.basename($url).'<br>'.$this->getLang('L_DOCUMENT_NOT_EXIST').'<br><a href="'.PLX_ROOT.'">'.$this->getLang('L_BACK_HOME').'</a></p><style>html{display:grid;height:100vh;place-items:center;background:#333;font-size:clamp(15px, 5vw,40px)}body {background:orange;padding:0.5em;border-radius:1em;box-shadow:0.25em 0.25em .5em;border:solid white;text-align:center;}</style></body></html>';	
+					    			
+				echo  $page;
+				exit;  
+				}
+			}      
 		}
-        
-        
-        
-	} // class Plugin
-?>
+	}

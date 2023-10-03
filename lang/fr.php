@@ -14,4 +14,7 @@
 	'L_FORMAT_WARNING' 		=> 'Inserer les extensions de fichier en les séparant par une barre oblique : | et sans espaces.',
 	'L_FORMAT_EXAMPLE' 		=> 'Exemple de liste de format de fichiers à traiter',
 	'L_COUNT_DOWNLOAD'		=> 'Comptage des télèchargement',
+	'L_DOCUMENT_NOT_ALLOWED'=> 'Ce document n\'est pas autorisé à être téléchargé.',
+	'L_DOCUMENT_NOT_EXIST'	=> 'Ce document n\'existe pas',
+	'L_BACK_HOME'			=> 'Retour au site ⤶',
 );
