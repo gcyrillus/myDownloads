@@ -121,12 +121,13 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
 		
 		/* s'intercalle entre la demande de fichier et son envoi au navigateur */
         public function Index() {
-			$plxShow = plxShow::getInstance(); 
-			$plxMotor = plxMotor::getInstance(); 
-			$page='';
-			$forbidden = explode('|', 'cgi|eml|html|htm|php|exe|bat|msg|ost|pst|ini|xml|com|dll|tmp|drv|htaccess|conf|log|svbin|sieve|bin|db|dbf|dbx|ddb|json|oab|old|pgp');
 			if(isset($_GET['file2dl'])) {				
+				$plxShow = plxShow::getInstance(); 
+				$plxMotor = plxMotor::getInstance(); 
+				$page='';
+				$forbidden = explode('|', 'cgi|eml|html|htm|php|exe|bat|msg|ost|pst|ini|xml|com|dll|tmp|drv|htaccess|conf|log|svbin|sieve|bin|db|dbf|dbx|ddb|json|oab|old|pgp');
 				$url='.'.$_GET['file2dl'];
+				
 				if(file_exists($url) and !in_array(pathinfo(basename($url), PATHINFO_EXTENSION),$forbidden) ) {
 					
 					$ext = pathinfo(basename($url), PATHINFO_EXTENSION);
