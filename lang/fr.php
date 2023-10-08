@@ -16,5 +16,9 @@
 	'L_COUNT_DOWNLOAD'		=> 'Comptage des télèchargement',
 	'L_DOCUMENT_NOT_ALLOWED'=> 'Ce document n\'est pas autorisé à être téléchargé.',
 	'L_DOCUMENT_NOT_EXIST'	=> 'Ce document n\'existe pas',
-	'L_BACK_HOME'			=> 'Retour au site ⤶',
+	'L_BACK_HOME'			=> 'Retour au site ⤾',
+	'L_NO_DATA'				=> 'Auncun fichier télèchargé.',
+	'L_FILE'				=> 'Fichier(s)',
+	'L_FILE_FROM'			=> 'Fichiers télèchargés depuis',
+	'L_FOLDER'				=> 'Repertoire',
 );
