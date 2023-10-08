@@ -44,7 +44,7 @@
 			
 			if(!file_exists($this->fileStatDl)) {
 				$plxMotor = plxMotor::getInstance();
-				$this->jsonStat = array('site'=> $plxMotor->aConf['title']);
+				$this->jsonStat = array('Site'=> $plxMotor->aConf['title']);
 				if (!touch($this->fileStatDl)) {
 					echo "erreur";
 					} else {
