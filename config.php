@@ -5,6 +5,7 @@
 	plxToken::validateFormToken($_POST);
 	
 	if(!empty($_POST)) {
+	if(strlen(trim($_POST["extension"]))<1 ){$_POST["activated"] ='0';}
 		$plxPlugin->setParam("activated", plxUtils::strCheck($_POST["activated"]), "numeric");
 		$plxPlugin->setParam("extension", plxUtils::strCheck($_POST["extension"]), "cdata");
 		$plxPlugin->saveParams();
