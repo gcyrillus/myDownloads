@@ -53,6 +53,18 @@
                 }
             }
         }
+        
+        # code à exécuter à la désactivation du plugin
+        public function OnDeactivate() {
+            $this->setParam("activated", '0', "numeric");
+            $this->saveParams();
+            if (is_file(PLX_ROOT.'.htaccess')) {
+                $this->writeHtaccess('', 0);
+            }
+        }        
+        
+        
+        
         /* regles de réecritures à ajouter pour activer le comptage */
         public function myHtaccessFile2dl($extList)
         {

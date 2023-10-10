@@ -13,9 +13,10 @@
 	
 	$records =  json_decode(file_get_contents($plxPlugin->fileStatDl), true);
 ?>
-<h2>Infos configuration</h2>
-<p> plugin actif : <b><?php if($var['activated'] ==0){echo L_NO;}else{ echo L_YES;}?></b></p> 
-<p> Extension de fichiers en telechargement forcés : <b><?= $var['extension'] ?></b></p>
+<h2><?php $plxPlugin->lang('L_CONFIG_INFOS') ?></h2>
+
+<p <?php if($var['activated']==0) echo ' class="alert red" ' ; else echo ' class="alert green" ' ;?> style="width:max-content"><?php $plxPlugin->lang('L_IS_ACTIVE') ?>: <b><?php if($var['activated'] ==0){echo L_NO;}else{ echo L_YES;}?></b></p> 
+<p><?php $plxPlugin->lang('L_FORCED_EXTENSION') ?>: <b><?= $var['extension'] ?></b></p>
 <h2>Comptage téléchargement par repertoire</h2>	
 <div class="statDL">	
 	<?php
