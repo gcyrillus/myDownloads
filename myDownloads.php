@@ -3,8 +3,8 @@
     /**
         * Plugin myDownloads
         *
-        * @version	1.0.1
-        * @date	3/10/2023
+        * @version	1.1.0
+        * @date	10/10/2023
         * @author G-CYRILLUS
     **/
     class myDownloads extends plxPlugin
@@ -96,7 +96,7 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
                 }
             }
             # creation ou mise à jour
-            if ($action==1) {
+            if ($action==1 and trim($this->getParam('extension') > 0)) {
                 $htaccess = $htaccess.PHP_EOL.$plugHtaccess;
             }
             return plxUtils::write($htaccess, PLX_ROOT.'.htaccess');
@@ -149,7 +149,7 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
         {
            
             if (isset($_GET['file2dl'])) {
-             $plxShow = plxShow::getInstance();
+            $plxShow = plxShow::getInstance();
             $plxMotor = plxMotor::getInstance();
             $page='';
             $forbidden = explode('|', 'cgi|eml|html|htm|php|exe|bat|msg|ost|pst|ini|xml|com|dll|tmp|drv|htaccess|conf|log|svbin|sieve|bin|db|dbf|dbx|ddb|json|oab|old|pgp');
