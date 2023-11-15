@@ -9,7 +9,7 @@
     **/
     class myDownloads extends plxPlugin   {
     
-        public const HOOKS = array(
+        const HOOKS = array(
         'Index',
         'plxMotorPreChauffageBegin',
         'plxAdminHtaccess',
@@ -47,14 +47,14 @@
         if($this->getParam('urlRewriteAvalaible') =='') {		
 		$initDir=PLX_PLUGINS.basename(__DIR__).'/temp';
 		$initFileHtaccess=PLX_PLUGINS.basename(__DIR__).'/temp/.htaccess';
-		$initFilefail=PLX_PLUGINS.basename(__DIR__).'/temp/is_active.txt';
-		$initFileConfirm=PLX_PLUGINS.basename(__DIR__).'/temp/okay.txt';
+		$initFilefail=PLX_PLUGINS.basename(__DIR__).'/temp/is_active.php';
+		$initFileConfirm=PLX_PLUGINS.basename(__DIR__).'/temp/okay.php';
 		if (!is_dir($initDir)){
 			mkdir($initDir);
 			}			
 		if(!file_exists($initFileHtaccess)) {
 			$content ='RewriteEngine On
-RewriteRule is_active.txt okay.txt';
+RewriteRule is_active.php okay.php';
 			touch($initFileHtaccess);
 			file_put_contents($initFileHtaccess, $content);
 		}
@@ -64,7 +64,7 @@ RewriteRule is_active.txt okay.txt';
 			file_put_contents($initFileConfirm, '1');
 			
 			#test urlrewriting
-			$url = $_SERVER['SERVER_NAME'].'/plugins/'.basename(__DIR__).'/temp/is_active.txt';
+			$url = $_SERVER['SERVER_NAME'].'/plugins/'.basename(__DIR__).'/temp/is_active.php';
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -113,7 +113,6 @@ RewriteRule is_active.txt okay.txt';
         # code à exécuter à la désactivation du plugin
         public function OnDeactivate() {
             $this->setParam("activated", '0', "numeric");
-			$this->setParam('urlRewriteAvalaible', '', 'string');
             $this->saveParams();
             if (is_file(PLX_ROOT.'.htaccess')) {
                 $this->writeHtaccess('', 0);
@@ -250,4 +249,5 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
                 }
             }
         }
+    }
     }

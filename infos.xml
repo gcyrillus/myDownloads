@@ -2,10 +2,10 @@
 <document>
     <title>myDownloads</title>
     <author>G.Cyrille</author>
-    <version>1.1.0</version>
-	<date>10/10/2023</date>
+    <version>1.1.1</version>
+	<date>25/10/2023</date>
     <site>https://re7net.com</site>
-    <description><![CDATA[ * force et compte le telechargement de fichier <br> *  filtrage des extensions a configurer <br> *  necessite apache et mod_rewrite]]></description>
+    <description><![CDATA[ * force et compte le telechargement de fichier <br> *  filtrage des extensions a configurer <br> *  necessite apache et mod_rewrite  . Si les prérequis manquent, un message indique que les fonctionnalités du plugin sont inactives.]]></description>
     <scope></scope>
     <require>version 5.8.x , serveur Apache et mod_rewrite</require>
 </document>

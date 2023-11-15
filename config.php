@@ -5,7 +5,7 @@
 	plxToken::validateFormToken($_POST);
 	
 	if(!empty($_POST)) {
-	if(strlen(trim($_POST["extension"]))<1 ){$_POST["activated"] ='0';}
+	if(strlen(trim($_POST["extension"]))<1 OR $plxPlugin->getParam('urlRewriteAvalaible') != '1'){$_POST["activated"] ='0';}
 		$plxPlugin->setParam("activated", plxUtils::strCheck($_POST["activated"]), "numeric");
 		$plxPlugin->setParam("extension", plxUtils::strCheck($_POST["extension"]), "cdata");
 		$plxPlugin->saveParams();
@@ -28,6 +28,8 @@
 			<?php plxUtils::printSelect('activated',array('1'=>L_YES,'0'=>L_NO), $var['activated']);?>
 		</label>
 	</p>
+	<?php if($plxPlugin->getParam('urlRewriteAvalaible') != '1') { echo '<p class="alert red">'.$plxPlugin->getLang("L_NO_MOD_REWRITE").'</p>';}
+	else { ?>
 	<p>
 		<label><?php $plxPlugin->lang("L_EXTENSION") ?>
 		</label>
@@ -37,6 +39,7 @@
 		<strong><?php $plxPlugin->lang("L_FORMAT_WARNING") ?></strong>  
 			<br/><i><?php $plxPlugin->lang("L_FORMAT_EXAMPLE") ?> : <small>zip|rar|pdf</small></i>
 	</p>
+	<?php } ?>
 	<p class="in-action-bar">
 		<?php echo plxToken::getTokenPostMethod() ?><br>
 		<input type="submit" name="submit" value="<?= L_COMMENT_SAVE_BUTTON ?>"/>
