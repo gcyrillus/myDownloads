@@ -2,10 +2,15 @@
 <document>
     <title>myDownloads</title>
     <author>G.Cyrille</author>
-    <version>1.1.1</version>
-	<date>25/10/2023</date>
+    <version>2.0</version>
+	<date>16/11/2023</date>
     <site>https://re7net.com</site>
-    <description><![CDATA[ * force et compte le telechargement de fichier <br> *  filtrage des extensions a configurer <br> *  necessite apache et mod_rewrite  . Si les prérequis manquent, un message indique que les fonctionnalités du plugin sont inactives.]]></description>
+    <description><![CDATA[ * force et compte le telechargement de fichier 
+	    *  filtrage des extensions a configurer
+	    *  necessite apache et mod_rewrite ou Nginx avec l'edition de configuration du fichier conf du serveur . 
+	    Si les prérequis manquent, un message indique que les fonctionnalités du plugin sont inactives.
+Il est necessaire de configurer au moins une extensions pour activer pleinement le plugin.
+	    Pour nginx et pour les utilisateurs avançés, suivre les infos pour connaitre les régles de redirection à injecter. ]]></description>
     <scope></scope>
     <require>version 5.8.x , serveur Apache et mod_rewrite</require>
 </document>
