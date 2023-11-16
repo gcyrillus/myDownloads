@@ -2,9 +2,12 @@
 force le telechargement avec un comptage. extension configurable. PRE-REQUIS: apache et mod_rewrite
 
 <img src="https://github.com/gcyrillus/myDownloads/blob/main/icon.png?raw=true">
-<p><strong>!Requiert un serveur Apache et mod_rewrite!</strong></p>
+<p><strong>!Requiert un serveur Apache et mod_rewrite!</strong> pour la configuration par <code>.htacess</code> et pour les serveurs NGINX, il vous faudra modifier manuellement votre fichier de configuration pour y ajouter 2 régles de redirections.</p>
 <h2>Configuration</h2>
-<p>Il faut d'abord activé le plugin pour modifier le fichier <code>.htaccess</code> à la racine de PluXml</p>
+<blockquote><p><b>Avec un serveur NGINX</b>, vous devrez avant d'activer le plugin faire une modification dans votre fichier de configuration dans le block <i>server</i> avant la premiere ligne avec la declaration <b>location</b>.</p>
+<p>Ces deux lignes à ajouter sont : <pre>rewrite ^/plugins/myDownloads/temp/is_active.txt /plugins/myDownloads/temp/okay.txt ; 
+	include CHEMIN_ABSOLU_VERS_RACINE_DU_SITE/plugins/file2dl.nginx.conf.txt ;	</pre> où <i>CHEMIN_ABSOLU_VERS_RACINE_DU_SITE</i> correspond à root déclaré en amont sans les accolades. Une fois ceci fait, il faut encore créer un fichier vide à la racine du repertoire `plugins` de votre PluXml. Nommez ce fichier : `file2dl.nginx.conf.txt` . Il reste à  redemarrer le serveur pour que ces nouvelles régles s'appliquent.et ensuite activé le plugin.</p></blockquote>
+<p><b>Pour Apache</b>, Il faut seulement activé le plugin pour modifier le fichier <code>.htaccess</code> à la racine de PluXml</p>
 <p><b>Note: </b>Il n'est pas necessaire d'activé l'urlrewriting dans PluXml, le plugin fonctionne dans les deux configurations et est compatible avec le plugin mYBetterUrls.</p>
 <p></p>
 <p>Par défaut , aucunes extensions de fichier ne sont filtrées, vous devez indiquer quel type de fichiers doivent être téléchargés et comptabilisés.</p>
