@@ -8,6 +8,13 @@
     'L_GOTO_ADMIN'      		=> 'Allez à la page administration',
 	'L_DESCRIPTION' 			=> 'Le plugin s\'interface entre un fichier demandé par un visiteur en enregistrant le nombre d\'enregistrement avant de lui renvoyer en forçant le téléchargement de celui-ci.',
 	'L_NO_MOD_REWRITE'			=> 'Fonction mod_rewrite non disponible. Plugin non fonctionnel.',
+	'L_UPDATE_NGINX_CONF'		=> 'Le plugin est compatible NGINX en editant le fichier de configuration de votre serveur.
+	Si vous heberger plusieurs site sur le même hebergement, n\'editer que le fichier correspondant au site où vous installez le plugin.
+	Vous avez deux lignes à ajouter dans le fichier devant la premier ligne de configuration commençant par <b>location</b>.
+Ces lignes sont:<pre style="color: fuchsia;font-weight: bold;">
+	rewrite ^/plugins/myDownloads/temp/is_active.txt /plugins/myDownloads/temp/okay.txt ; 
+	include CHEMIN_ABSOLU_VERS_RACINE_DU_SITE/plugins/file2dl.nginx.conf.txt ;
+	</pre> où <i>CHEMIN_ABSOLU_VERS_RACINE_DU_SITE</i> correspond à root déclaré en amont sans les accolades.',
 	'L_ACTIVATE' 				=> 'filtrage actif',
 	'L_IS_PLUGIN_ACTIVE'		=> 'Plugin activé ',
 	'L_IS_ACTIVE'				=> 'Le filtrage est actif: ',

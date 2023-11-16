@@ -49,6 +49,8 @@
 		$initFileHtaccess=PLX_PLUGINS.basename(__DIR__).'/temp/.htaccess';
 		$initFilefail=PLX_PLUGINS.basename(__DIR__).'/temp/is_active.txt';
 		$initFileConfirm=PLX_PLUGINS.basename(__DIR__).'/temp/okay.txt';
+		$nginxHtaccess =PLX_PLUGINS.'file2dl.nginx.conf.txt';
+		if(!file_exists($nginxHtaccess)) plxUtils::write('#init, now update your nginx conf file so it becomes usefull.', $nginxHtaccess);
 		if (!is_dir($initDir)){
 			mkdir($initDir);
 			}			
@@ -137,6 +139,16 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
 ';
             return $htaccessRule;
         }
+		
+		/* regles de récritures pour NGINX Serveur */
+		public function myNginxRewriteFile2dl($extList) {
+			$nginxConfFile2dl='
+    if ($request_uri ~ ".*\.('.$extList.')") {
+        rewrite ^/(.*)/ /index.php?file2dl=$request_uri;
+    }
+';	
+		return $nginxConfFile2dl;	
+		}
 
         /*
             * ajoute les regles de réecriture du plugin en fin de fichier htaccess
@@ -157,6 +169,22 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
                 $htaccess = $htaccess.PHP_EOL.$plugHtaccess;
             }
             return plxUtils::write($htaccess, PLX_ROOT.'.htaccess');
+        }
+		
+		
+       /*
+            * ajoute les regles de réecriture du plugin en fin de fichier htaccess
+            * @author G-CYRILLUS
+        */
+        public function writeNginxConf($plugNginxConf, $action)
+        {
+
+            # creation ou mise à jour
+            if ($action==1 and trim($this->getParam('extension') > 0)) {
+				return plxUtils::write($plugNginxConf, PLX_PLUGINS.'file2dl.nginx.conf.txt');
+            }
+			else {return plxUtils::write('#let it be included anyway and avoid a warning', PLX_PLUGINS.'file2dl.nginx.conf.txt');}
+            
         }
         /*
             * Hook sur l'activation de l'urlRewriting dans PluXml.

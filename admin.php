@@ -18,7 +18,10 @@
 <p <?php if($var['activated']==0) echo ' class="alert red" ' ; else echo ' class="alert green" ' ;?> style="width:max-content"><?php $plxPlugin->lang('L_IS_ACTIVE') ?>: <b><?php if($var['activated'] ==0){echo L_NO;}else{ echo L_YES;}?></b></p> 
 <p><?php $plxPlugin->lang('L_FORCED_EXTENSION') ?>: <b><?= $var['extension'] ?></b></p>
 <h2><?php $plxPlugin->lang('L_COUNT_DOWNLOAD') ?></h2>	
-	<?php if($plxPlugin->getParam('urlRewriteAvalaible') != '1') { echo '<p class="alert red">'.$plxPlugin->getLang("L_NO_MOD_REWRITE").'</p>';} ?>
+	<?php if($plxPlugin->getParam('urlRewriteAvalaible') != '1') { 
+		echo '<p class="alert red">'.$plxPlugin->getLang("L_NO_MOD_REWRITE").'</p>'; 
+		echo '<div class="alert green">'.$plxPlugin->getLang('L_UPDATE_NGINX_CONF').'</div>';
+	} ?>
 <div class="statDL">	
 	<?php
 		unset($records['Site']);

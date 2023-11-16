@@ -11,6 +11,7 @@
 		$plxPlugin->saveParams();
 		
 		$plxPlugin->writeHtaccess($plxPlugin->myHtaccessFile2dl(trim($_POST["extension"])),$_POST["activated"]);
+		$plxPlugin->writeNginxConf($plxPlugin->myNginxRewriteFile2dl(trim($_POST["extension"])),$_POST["activated"]);
 		header("Location: parametres_plugin.php?p=".basename(__DIR__));
 		exit;
 	}	
@@ -28,7 +29,10 @@
 			<?php plxUtils::printSelect('activated',array('1'=>L_YES,'0'=>L_NO), $var['activated']);?>
 		</label>
 	</p>
-	<?php if($plxPlugin->getParam('urlRewriteAvalaible') != '1') { echo '<p class="alert red">'.$plxPlugin->getLang("L_NO_MOD_REWRITE").'</p>';}
+	<?php if($plxPlugin->getParam('urlRewriteAvalaible') != '1') { 
+	echo '<p class="alert red">'.$plxPlugin->getLang("L_NO_MOD_REWRITE").'</p>';
+	echo '<div class="alert green">'.$plxPlugin->getLang('L_UPDATE_NGINX_CONF').'</div>';
+	}
 	else { ?>
 	<p>
 		<label><?php $plxPlugin->lang("L_EXTENSION") ?>
