@@ -1,14 +1,12 @@
 <?php
-
     /**
         * Plugin myDownloads
         *
-        * @version	1.0.1
-        * @date	3/10/2023
+        * @version	2.0
+        * @date	16/11/2023
         * @author G-CYRILLUS
     **/
-    class myDownloads extends plxPlugin   {
-    
+    class myDownloads extends plxPlugin   {    
         public const HOOKS = array(
         'Index',
         'plxMotorPreChauffageBegin',
@@ -25,15 +23,12 @@
         {
             # Appel du constructeur de la classe plxPlugin (obligatoire)
             parent::__construct($default_lang);
-
-
             # Personnalisation du menu admin
             // $this->setAdminMenu('Titre du plugin', 1, 'Légende du lien');
             # Ajoute des hooks
             foreach (self::HOOKS as $hook) {
                 $this->addHook($hook, $hook);
             }
-
             # droits pour accéder à la page config.php et admin.php du plugin
             $this->setConfigProfil(PROFIL_ADMIN);
             $this->setAdminProfil(PROFIL_ADMIN);
@@ -42,8 +37,7 @@
         #code à exécuter à l’activation du plugin
         /* config par defaug  */
         public function OnActivate()
-        {
-        
+        {        
         if($this->getParam('urlRewriteAvalaible') =='') {		
 		$initDir=PLX_PLUGINS.basename(__DIR__).'/temp';
 		$initFileHtaccess=PLX_PLUGINS.basename(__DIR__).'/temp/.htaccess';
@@ -63,8 +57,7 @@ RewriteRule is_active.txt okay.txt';
 			touch($initFilefail);			
 			file_put_contents($initFilefail, '0');
 			touch($initFileConfirm);			
-			file_put_contents($initFileConfirm, '1');
-			
+			file_put_contents($initFileConfirm, '1');			
 			#test urlrewriting
 			$url = $_SERVER['SERVER_NAME'].'/plugins/'.basename(__DIR__).'/temp/is_active.txt';
 			$ch = curl_init();
@@ -100,16 +93,7 @@ RewriteRule is_active.txt okay.txt';
                 } else {
                     file_put_contents($this->fileStatDl, json_encode($this->jsonStat, true));
                 }
-            }
-            
-            
-        
-            
-            
-            
-            
-            
-            
+            }            
         }
         
         # code à exécuter à la désactivation du plugin
@@ -120,10 +104,7 @@ RewriteRule is_active.txt okay.txt';
             if (is_file(PLX_ROOT.'.htaccess')) {
                 $this->writeHtaccess('', 0);
             }
-        }        
-        
-        
-        
+        }           
         /* regles de réecritures à ajouter pour activer le comptage */
         public function myHtaccessFile2dl($extList)
         {
@@ -170,7 +151,6 @@ RewriteRule ^(.*)/  index.php?file2dl=%{REQUEST_URI} [R]
             }
             return plxUtils::write($htaccess, PLX_ROOT.'.htaccess');
         }
-		
 		
        /*
             * ajoute les regles de réecriture du plugin en fin de fichier htaccess
