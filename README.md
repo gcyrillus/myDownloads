@@ -2,7 +2,8 @@
 force le telechargement avec un comptage. extension configurable. PRE-REQUIS: apache et mod_rewrite
 
 <img src="https://github.com/gcyrillus/myDownloads/blob/main/icon.png?raw=true">
-<p><strong>!Requiert un serveur Apache et mod_rewrite!</strong> pour la configuration par <code>.htacess</code> et pour les serveurs NGINX, il vous faudra modifier manuellement votre fichier de configuration pour y ajouter 2 régles de redirections.</p>
+<p><strong>!Requiert un serveur Apache et mod_rewrite!</strong> pour la configuration par <code>.htaccess</code></p>
+<p><b>Pour les serveurs NGINX</b>, il vous faudra modifier manuellement votre fichier de configuration pour y ajouter 2 régles de redirections.<sub>voir ci-dessous</sub></p>
 <h2>Configuration</h2>
 <blockquote><p><b>Avec un serveur NGINX</b>, vous devrez avant d'activer le plugin faire une modification dans votre fichier de configuration dans le block <i>server</i> avant la premiere ligne avec la declaration <b>location</b>.</p>
 <p>Ces deux lignes à ajouter sont : <pre>rewrite ^/plugins/myDownloads/temp/is_active.txt /plugins/myDownloads/temp/okay.txt ; 
