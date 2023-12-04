@@ -1,5 +1,5 @@
 <article itemprop="text">
-	<p class="hp"><img src="../../plugins/myDownloads/icon.png"><span>
+	<p class="hp"><img src="../../plugins/myDownloads/icon.png"/><span>
 	force le telechargement avec un comptage <br/>Avec liste d'extensions configurables et interdites. 
 	<br/>PRE-REQUIS: apache et mod_rewrite ou Nginx et l'edition de son fichier <code>conf</code>.</span>
 	</p>
