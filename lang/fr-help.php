@@ -1,7 +1,7 @@
 <article itemprop="text">
 	<p class="hp"><img src="../../plugins/myDownloads/icon.png"><span>
-	force le telechargement avec un comptage <br>Avec liste d'extensions configurables et interdites. 
-	<br>PRE-REQUIS: apache et mod_rewrite ou Nginx et l'edition de son fichier <code>conf</code>.
+	force le telechargement avec un comptage <br/>Avec liste d'extensions configurables et interdites. 
+	<br/>PRE-REQUIS: apache et mod_rewrite ou Nginx et l'edition de son fichier <code>conf</code>.</span>
 	</p>
 	<p><strong>!Requiert un serveur Apache et mod_rewrite!</strong> pour la configuration par <code>.htacess</code> et pour les serveurs NGINX, 
 	il vous faudra modifier manuellement votre fichier de configuration pour y ajouter 2 régles de redirections.</p>
